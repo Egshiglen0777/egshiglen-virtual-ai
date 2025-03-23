@@ -5,6 +5,12 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Check if API key exists
+if (!process.env.OPENAI_API_KEY) {
+  console.error("❌ Missing OPENAI_API_KEY. Make sure it's set in Railway.");
+  process.exit(1);
+}
+
 // Initialize OpenAI
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -31,12 +37,12 @@ app.post('/chat', async (req, res) => {
 
     res.json({ reply: response.choices[0].message.content });
   } catch (error) {
-    console.error(error);
+    console.error("❌ OpenAI Error:", error);
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`✅ Server is running on http://localhost:${port}`);
 });
