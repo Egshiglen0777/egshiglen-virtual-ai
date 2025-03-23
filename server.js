@@ -1,12 +1,13 @@
 const express = require('express');
 const { OpenAI } = require('openai');
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Initialize OpenAI
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // Railway will inject this
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 // Middleware to parse JSON
