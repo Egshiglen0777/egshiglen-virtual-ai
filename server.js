@@ -1,4 +1,4 @@
-// Caring, girlfriend-seeking persona with preferences in server.js
+v// Caring, girlfriend-seeking persona with preferences in server.js
 
 const express = require('express');
 const { OpenAI } = require('openai');
@@ -30,7 +30,7 @@ app.post('/chat', async (req, res) => {
 
   try {
     const response = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+model: 'gpt-4o-mini',
       messages: [
         {
           role: 'system',
