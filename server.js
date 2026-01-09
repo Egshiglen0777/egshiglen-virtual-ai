@@ -1,9 +1,7 @@
-v// Caring, girlfriend-seeking persona with preferences in server.js
-
+// Caring, girlfriend-seeking persona with preferences in server.js
 const express = require('express');
 const { OpenAI } = require('openai');
 const cors = require('cors');
-
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -25,9 +23,7 @@ app.post('/chat', async (req, res) => {
   if (!openai) {
     return res.status(503).json({ error: 'OpenAI not configured' });
   }
-
   const { message } = req.body;
-
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
@@ -40,7 +36,6 @@ app.post('/chat', async (req, res) => {
       ],
       max_tokens: 150,
     });
-
     res.json({ reply: response.choices[0].message.content });
   } catch (error) {
     res.status(500).json({ error: error.message });
